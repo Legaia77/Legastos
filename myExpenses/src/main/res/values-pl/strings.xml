@@ -24,7 +24,7 @@
     <string name="account_type_liability">Rachunek płatności</string>
     <string name="already_defined">%1$s jest już zdefiniowane</string>
     <string name="amount">Kwota</string>
-    <string name="app_name">Moje Wydatki</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">Baza danych oraz preferencje zostały zapisane na kartę pamięci pomyślnie (%1$s).</string>
     <string name="category">Kategoria</string>
     <string name="contrib_feature_ad_free_label" tools:ignore="UnusedResources">Brak reklam</string>

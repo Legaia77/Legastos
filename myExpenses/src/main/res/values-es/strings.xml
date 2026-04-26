@@ -24,7 +24,7 @@
     <string name="account_type_liability">Cuenta de deudas</string>
     <string name="already_defined">%1$s ya existe</string>
     <string name="amount">Importe</string>
-    <string name="app_name">Mis Gastos</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">La base de datos y las configuraciones han sido escritas en «%1$s» correctamente.</string>
     <string name="category">Categoría</string>
     <string name="contrib_feature_ad_free_label">Sin anuncios</string>

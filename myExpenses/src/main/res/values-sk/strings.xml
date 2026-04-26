@@ -22,7 +22,7 @@
     <string name="account_type_liability">Účet záväzkov</string>
     <string name="already_defined">%1$s je definované</string>
     <string name="amount">Čiastka</string>
-    <string name="app_name">Moje výdavky</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">Databáza a nastavenia sa úspešne uložili do \"%1$s\".</string>
     <string name="category">Kategória</string>
     <string name="contrib_feature_accounts_unlimited_label" tools:ignore="UnusedResources">Neobmedzený počet účtov</string>

@@ -24,7 +24,7 @@
     <string name="account_type_liability">Sonstige Verbindlichkeiten</string>
     <string name="already_defined">%1$s existiert bereits</string>
     <string name="amount">Betrag</string>
-    <string name="app_name">Meine Ausgaben</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">Die Datenbank und die Einstellungen wurden erfolgreich nach „%1$s“ gesichert.</string>
     <string name="category">Kategorie</string>
     <string name="contrib_feature_ad_free_label">Ohne Werbung</string>

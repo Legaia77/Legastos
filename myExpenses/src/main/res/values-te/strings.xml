@@ -513,7 +513,7 @@
     <string name="contrib_feature_ad_free_label" tools:ignore="UnusedResources">ప్రకటనలు లేవు</string>
     <string name="category">వర్గం</string>
     <string name="backup_success">డేటాబేస్ మరియు ప్రాధాన్యతలు విజయవంతంగా \"%1$s\" కు వ్రాయబడ్డాయి.</string>
-    <string name="app_name">నా ఖర్చులు</string>
+    <string name="app_name">Legastos</string>
     <string name="amount">మొత్తం</string>
     <string name="already_defined">%1$s ఇప్పటికే నిర్వచించబడింది</string>
     <string name="account_type_liability">బాధ్యతల ఖాతా</string>

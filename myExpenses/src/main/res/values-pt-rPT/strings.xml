@@ -24,7 +24,7 @@
     <string name="account_type_liability">Conta de passivos</string>
     <string name="already_defined">%1$s já definido</string>
     <string name="amount">Quantia</string>
-    <string name="app_name">Minhas Despesas</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">O banco de dados e as preferências foram gravados com sucesso em \"%1$s\".</string>
     <string name="category">Categoria</string>
     <string name="contrib_feature_ad_free_label">Sem anúncios</string>

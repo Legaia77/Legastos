@@ -24,7 +24,7 @@
     <string name="account_type_liability">Дуговни рачун</string>
     <string name="already_defined">%1$s је већ дефинисана</string>
     <string name="amount">Износ</string>
-    <string name="app_name">Моји Трошкови</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">База података и приоритета успешно уписана у \"%1$s\".</string>
     <string name="category">Категорија</string>
     <string name="income">Приход</string>

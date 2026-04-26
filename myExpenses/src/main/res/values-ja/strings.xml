@@ -24,7 +24,7 @@
     <string name="account_type_liability">負債勘定</string>
     <string name="already_defined">%1$s は既に定義されています</string>
     <string name="amount">金額</string>
-    <string name="app_name">マイ エクスペンス</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">データベースとプリファレンスを \"%1$s\" に書き込みました。</string>
     <string name="category">分類</string>
     <string name="contrib_feature_ad_free_label">広告なし</string>

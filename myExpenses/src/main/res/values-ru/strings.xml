@@ -24,7 +24,7 @@
     <string name="account_type_liability">Прочие обязательства</string>
     <string name="already_defined">%1$s уже определен</string>
     <string name="amount">Сумма</string>
-    <string name="app_name">Мои расходы</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">БД и настройки успешно сохранены в \"%1$s\".</string>
     <string name="category">Категория</string>
     <string name="contrib_feature_ad_free_label">Без рекламы</string>

@@ -22,7 +22,7 @@
     <string name="account_type_liability">Passivkonto</string>
     <string name="already_defined">%1$s allerede defineret</string>
     <string name="amount">Beløb</string>
-    <string name="app_name">Mine Udgifter</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">Database og indstillinger blev gemt på \"%1$s\".</string>
     <string name="category">Kategori</string>
     <string name="contrib_feature_ad_free_label">Ingen reklamer</string>

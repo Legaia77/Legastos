@@ -25,7 +25,7 @@
     <string name="account_type_investment">Investments</string>
     <string name="already_defined">%1$s already defined</string>
     <string name="amount">Amount</string>
-    <string name="app_name">My Expenses</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">Database and preferences successfully written to \"%1$s\".</string>
     <string name="category">Category</string>
     <string name="contrib_feature_ad_free_label">No ads</string>

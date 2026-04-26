@@ -24,7 +24,7 @@
     <string name="account_type_liability">Účet závazků</string>
     <string name="already_defined">%1$s již definován.</string>
     <string name="amount">Částka</string>
-    <string name="app_name">Moje výdaje</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">Databáze a předvolby úspěšně zapsány do \"%1$s\".</string>
     <string name="category">Kategorie</string>
     <string name="contrib_feature_ad_free_label">Bez reklam</string>

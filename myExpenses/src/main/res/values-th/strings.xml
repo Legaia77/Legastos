@@ -29,7 +29,7 @@
     <string name="account_type_liability">บัญชีหนี้สิน</string>
     <string name="already_defined">%1$s ถูกกำหนดไว้แล้ว</string>
     <string name="amount">จำนวน</string>
-    <string name="app_name">ค่าใช้จ่ายของฉัน</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">เขียนฐานข้อมูลและการตั้งค่าลงใน \"%1$s\" เรียบร้อยแล้ว</string>
     <string name="category">หมวดหมู่</string>
     <string name="contrib_feature_accounts_unlimited_label">จำนวนบัญชีไม่จำกัด</string>
