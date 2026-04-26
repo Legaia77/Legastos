@@ -448,6 +448,10 @@ abstract class BaseMyExpenses<T : MyExpensesViewModel> : LaunchActivity(),
                     action = BackupRestoreActivity.ACTION_BACKUP
                 })
 
+            R.id.IMPORT_XLSX_COMMAND -> startActivity(
+                Intent(this, XlsxImportActivity::class.java)
+            )
+
 
             R.id.RESTORE_COMMAND -> startActivity(
                 Intent(

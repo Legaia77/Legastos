@@ -184,6 +184,10 @@ interface AppComponent {
 
     fun inject(myExpenses: MyExpensesV2)
 
+    fun inject(xlsxImportActivity: org.totschnig.myexpenses.activity.XlsxImportActivity)
+
+    fun inject(xlsxImportViewModel: org.totschnig.myexpenses.viewmodel.XlsxImportViewModel)
+
     fun inject(preferenceActivity: PreferenceActivity)
 
     fun inject(protectedFragmentActivity: ProtectedFragmentActivity)

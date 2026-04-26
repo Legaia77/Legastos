@@ -164,6 +164,12 @@ sealed class MenuItem(
         isEnabledByDefault = false
     )
 
+    data object ImportXlsx : MenuItem(
+        R.id.IMPORT_XLSX_COMMAND,
+        R.string.menu_import_xlsx,
+        R.drawable.ic_menu_save
+    )
+
     data object WebUI : MenuItem(
         R.id.WEB_UI_COMMAND,
         R.string.title_webui,
@@ -283,6 +289,7 @@ sealed class MenuItem(
                 Templates,
                 Budget,
                 Parties,
+                ImportXlsx,
                 Settings,
                 Backup,
                 WebUI,

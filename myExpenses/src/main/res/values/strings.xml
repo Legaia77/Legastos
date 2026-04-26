@@ -124,6 +124,7 @@
     <string name="menu_apply_template">Apply</string>
     <string name="menu_back">Back</string>
     <string name="menu_backup">Backup</string>
+    <string name="menu_import_xlsx">Importar XLSX</string>
     <!-- Balance: compare cleared balance in app with balance on statement received from bank -->
     <string name="menu_balance">Balance account</string>
     <!-- Cancelling a plan instance means setting a flag so that this instance will not trigger the creation of a new transaction -->

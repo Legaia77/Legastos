@@ -173,6 +173,14 @@ open class MyApplication : Application(), SharedPreferences.OnSharedPreferenceCh
         }
         licenceHandler.init()
         NotificationBuilderWrapper.createChannels(this)
+        if (!syncService) {
+            try {
+                org.totschnig.myexpenses.util.legastos.LegastosCategories
+                    .maybeSeedFlatCategories(appComponent.repository(), settings)
+            } catch (e: Exception) {
+                Timber.e(e, "Legastos category seed failed")
+            }
+        }
         if (BuildConfig.DEBUG) {
             contentResolver.persistedUriPermissions.forEach(Consumer { uriPermission: UriPermission? ->
                 Timber.d(

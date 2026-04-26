@@ -117,6 +117,7 @@
     <string name="menu_apply_template">Aplicar</string>
     <string name="menu_back">Atrás</string>
     <string name="menu_backup">Copia de seguridad</string>
+    <string name="menu_import_xlsx">Importar XLSX</string>
     <!-- Balance: compare cleared balance in app with balance on statement received from bank -->
     <string name="menu_balance">Balance de la cuenta</string>
     <!-- Cancelling a plan instance means setting a flag so that this instance will not trigger the creation of a new transaction -->
