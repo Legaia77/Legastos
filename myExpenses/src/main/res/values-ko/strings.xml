@@ -24,7 +24,7 @@
     <string name="account_type_liability">부채 계좌</string>
     <string name="already_defined">%1$s 이미 정의됨</string>
     <string name="amount">금액</string>
-    <string name="app_name">내 지출</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">\"%1$s\"에 데이터베이스 및 환경설정을 성공적으로 기록했습니다.</string>
     <string name="category">카테고리</string>
     <string name="contrib_feature_ad_free_label" tools:ignore="UnusedResources">광고 없음</string>

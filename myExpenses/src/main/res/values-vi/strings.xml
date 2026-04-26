@@ -24,7 +24,7 @@
     <string name="account_type_liability">Nợ</string>
     <string name="already_defined">%1$s đã được tạo trước đó</string>
     <string name="amount">Số lượng</string>
-    <string name="app_name">Quản lý chi tiêu</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">Đã ghi dữ liệu về cơ sở dữ liệu và tùy biến thành công vào \"%1$s\".</string>
     <string name="category">Phân loại</string>
     <string name="contrib_feature_ad_free_label" tools:ignore="UnusedResources">Không quảng cáo</string>

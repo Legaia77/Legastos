@@ -24,7 +24,7 @@
     <string name="account_type_liability">Λογαριασμός παθητικού</string>
     <string name="already_defined">%1$s ήδη οριστεί</string>
     <string name="amount">Ποσό</string>
-    <string name="app_name">Έξοδα μου</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">Βάση δεδομένων και προτιμήσεις εγγεγραμένα με επιτυχία να sdcard (%1$s).</string>
     <string name="category">Κατηγορία</string>
     <string name="contrib_feature_ad_free_label">Χωρίς διαφημίσεις</string>

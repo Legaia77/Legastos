@@ -22,7 +22,7 @@
     <string name="account_type_liability">負債賬戶</string>
     <string name="already_defined">%1$s 已被定義</string>
     <string name="amount">金額</string>
-    <string name="app_name">開支助手</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">數據庫及喜好設定成功寫入到SD卡 (%1$s)。</string>
     <string name="category">類別</string>
     <string name="contrib_feature_accounts_unlimited_label" tools:ignore="UnusedResources">帳戶數量不限</string>

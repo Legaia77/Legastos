@@ -23,7 +23,7 @@
     <string name="account_type_ccard">Kredietkaart</string>
     <string name="already_defined">%1$s is al gedefinieerd</string>
     <string name="amount">Bedrag</string>
-    <string name="app_name">Mijn Uitgaven</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">Database en voorkeuren succesvol geschreven naar \"%1$s\".</string>
     <string name="category">Categorie</string>
     <string name="contrib_feature_ad_free_label">Geen advertenties</string>

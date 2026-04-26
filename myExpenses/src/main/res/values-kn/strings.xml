@@ -24,7 +24,7 @@
     <string name="account_type_liability">ಹೊಣೆಗಾರಿಕೆಗಳ ಖಾತೆ</string>
     <string name="already_defined">%1$s ಅನ್ನು ಈಗಾಗಲೇ ವ್ಯಾಖ್ಯಾನಿಸಲಾಗಿದೆ</string>
     <string name="amount">ಮೊತ್ತ</string>
-    <string name="app_name">ಮೈ ಎಕ್ಸಪೆನ್ಸಸ್</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">ಡೇಟಾಬೇಸ್ ಮತ್ತು ಪ್ರಾಶಸ್ತ್ಯಗಳನ್ನು \"%1$s\" ಗೆ ಯಶಸ್ವಿಯಾಗಿ ಬರೆಯಲಾಗಿದೆ.</string>
     <string name="category">ವರ್ಗ</string>
     <string name="contrib_feature_ad_free_label">ಜಾಹೀರಾತುಗಳಿಲ್ಲ</string>

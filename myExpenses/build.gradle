@@ -61,6 +61,15 @@ android {
         }
     }*/
 
+    signingConfigs {
+        debug {
+            storeFile rootProject.file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
@@ -71,8 +80,9 @@ android {
             //ndk.debugSymbolLevel = 'FULL'
         }
         debug {
+            signingConfig signingConfigs.debug
             applicationIdSuffix ".debug"
-            manifestPlaceholders["appName"] = "My Expenses Debug"
+            manifestPlaceholders["appName"] = "Legastos Debug"
             buildConfigField "int", "TEST_SCENARIO", getPropertyIfDefined('testScenario', "1")
             buildConfigField "String", "OPEN_EXCHANGE_RATES_API_KEY", "\"" + getPropertyIfDefined('OPEN_EXCHANGE_RATES_API_KEY', "") + "\""
             buildConfigField "String", "COIN_API_API_KEY", "\"" + getPropertyIfDefined('COIN_API_API_KEY', "") + "\""

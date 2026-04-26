@@ -24,7 +24,7 @@
     <string name="account_type_liability">Megtakarítási számla</string>
     <string name="already_defined">%1$s már létezik</string>
     <string name="amount">Összeg</string>
-    <string name="app_name">Kiadásaim</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">Az adatbázis és beállítások sikeresen az SD-kártyára mentve (%1$s).</string>
     <string name="category">Kategória</string>
     <string name="contrib_feature_ad_free_label">Hirdetések kikapcsolása</string>

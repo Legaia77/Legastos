@@ -57,7 +57,7 @@
     <string name="dialog_title_contrib_feature">پریمیم خصوصیت</string>
     <string name="account">کھاتہ</string>
     <string name="account_types">اکاؤنٹ کی اقسام</string>
-    <string name="app_name">میرے اخراجات</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">ڈیٹا بیس اور ترجیحات کامیابی کے ساتھ\" %1$s\" میں لکھی گئیں۔</string>
     <string name="number_format_illegal">غیر قانونی نمبر فارمیٹ</string>
     <string name="default_account_name">بجٹ کی کتاب</string>

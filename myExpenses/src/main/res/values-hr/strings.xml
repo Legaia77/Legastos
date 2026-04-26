@@ -22,7 +22,7 @@
     <string name="account_type_liability">Druge obveze</string>
     <string name="already_defined">%1$s je već spremljen</string>
     <string name="amount">Iznos</string>
-    <string name="app_name">Moji troškovi</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">Baza podataka i osobne postavke uspješno su zapisani u „%1$s”.</string>
     <string name="category">Kategorija</string>
     <string name="contrib_feature_accounts_unlimited_label">Neograničen broj računa</string>

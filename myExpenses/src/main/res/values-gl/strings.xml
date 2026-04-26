@@ -21,7 +21,7 @@
     <string name="account_type_ccard">Tarxeta de crédito</string>
     <string name="already_defined">%1$s xa definida</string>
     <string name="amount">Importe</string>
-    <string name="app_name">Os meus gastos</string>
+    <string name="app_name">Legastos</string>
     <string name="category">Categoría</string>
     <string name="contrib_feature_ad_free_label">Sen anuncios</string>
     <string name="contrib_feature_accounts_unlimited_label">Número ilimitado de contas</string>

@@ -24,7 +24,7 @@
     <string name="account_type_liability">Autres passifs</string>
     <string name="already_defined">%1$s existe</string>
     <string name="amount">Montant</string>
-    <string name="app_name">Mes dépenses</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">La base de données et les paramètres ont été sauvegardés sur « %1$s ».</string>
     <string name="category">Catégorie</string>
     <string name="contrib_feature_ad_free_label">Sans publicité</string>

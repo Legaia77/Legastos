@@ -24,7 +24,7 @@
     <string name="account_type_liability">Други задължения</string>
     <string name="already_defined">%1$s вече е дефинирана</string>
     <string name="amount">Сума</string>
-    <string name="app_name">Моите разходи</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">Успешен запис на база данни и предпочитания в „%1$s“.</string>
     <string name="category">Категория</string>
     <string name="contrib_feature_ad_free_label">Без реклами</string>

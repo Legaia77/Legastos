@@ -24,7 +24,7 @@
     <string name="account_type_liability">Рахунок пасиву</string>
     <string name="already_defined">%1$s уже визначено</string>
     <string name="amount">Сума</string>
-    <string name="app_name">Мої Витрати</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">Бази даних та налаштування успішно записані на \"%1$s\".</string>
     <string name="category">Категорія</string>
     <string name="contrib_feature_ad_free_label">Без реклами</string>

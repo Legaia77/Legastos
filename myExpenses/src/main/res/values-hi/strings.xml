@@ -24,7 +24,7 @@
     <string name="account_type_liability">देयताएं खाता</string>
     <string name="already_defined">%1$s पहले से ही परिभाषित</string>
     <string name="amount">राशि</string>
-    <string name="app_name">मेरे खर्च</string>
+    <string name="app_name">Legastos</string>
     <string name="category"> श्रेणी</string>
     <string name="contrib_feature_ad_free_label">बिना विज्ञापन</string>
     <string name="contrib_feature_accounts_unlimited_label">असीमित खातों की संख्या</string>

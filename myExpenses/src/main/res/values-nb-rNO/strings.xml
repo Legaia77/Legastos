@@ -255,7 +255,7 @@
     <string name="contrib_feature_accounts_unlimited_label" tools:ignore="UnusedResources">Ubegrenset antall konti</string>
     <string name="contrib_feature_ad_free_label" tools:ignore="UnusedResources">Ingen reklamer</string>
     <string name="category">Kategori</string>
-    <string name="app_name">Mine utgifter</string>
+    <string name="app_name">Legastos</string>
     <string name="amount">Beløp</string>
     <string name="already_defined">%1$s finnes allerede</string>
     <string name="account_type_cash">Brukskonto</string>

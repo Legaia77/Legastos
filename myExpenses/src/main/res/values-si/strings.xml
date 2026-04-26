@@ -22,7 +22,7 @@
     <string name="account_type_liability">වගකීම් ගිණුම</string>
     <string name="already_defined">%1$s දැනටමත් අර්ථ දක්වා ඇත</string>
     <string name="amount">ප්‍රමාණය</string>
-    <string name="app_name">මාගේ වියදම්</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">දත්ත සමූහය සහ අභිමත සාර්ථකව \"%1$s\" ට ලියන ලදි.</string>
     <string name="category">ප්‍රවර්ගය</string>
     <string name="contrib_feature_accounts_unlimited_label" tools:ignore="UnusedResources">සීමා රහිත ගිණුම් ගණනක්</string>

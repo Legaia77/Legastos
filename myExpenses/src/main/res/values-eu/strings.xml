@@ -24,7 +24,7 @@
     <string name="account_type_liability">Pasiboko kontua</string>
     <string name="already_defined">%1$s badago definituta</string>
     <string name="amount">Kopurua</string>
-    <string name="app_name">Nire gastuak</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">Datu-basea eta hobespenak ondo idatzi dira \"%1$s\"-ra.</string>
     <string name="category">Kategoria</string>
     <string name="contrib_feature_ad_free_label">Iragarkirik gabe</string>

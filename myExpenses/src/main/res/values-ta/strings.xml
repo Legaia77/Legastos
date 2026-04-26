@@ -24,7 +24,7 @@
     <string name="account_type_liability">பிற பொறுப்புகள்</string>
     <string name="already_defined">%1$s ஏற்கனவே வரையறுக்கப்பட்டுள்ளது</string>
     <string name="amount">தொகை</string>
-    <string name="app_name">எனது செலவுகள்</string>
+    <string name="app_name">Legastos</string>
     <string name="backup_success">தரவுத்தளம் மற்றும் விருப்பத்தேர்வுகள் \"%1$s\" க்கு வெற்றிகரமாக எழுதப்பட்டது.</string>
     <string name="category">வகை</string>
     <string name="contrib_feature_ad_free_label">விளம்பரங்கள் இல்லை</string>
