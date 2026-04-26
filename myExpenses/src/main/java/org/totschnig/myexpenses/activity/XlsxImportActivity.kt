@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,9 +18,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
@@ -28,8 +27,10 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -46,6 +47,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.totschnig.myexpenses.R
 import org.totschnig.myexpenses.compose.AppTheme
 import org.totschnig.myexpenses.injector
+import org.totschnig.myexpenses.util.legastos.LearnedRules
+import org.totschnig.myexpenses.util.legastos.LegastosCategories.Cat
 import org.totschnig.myexpenses.util.legastos.ParsedTransaction
 import org.totschnig.myexpenses.util.legastos.RowCurrency
 import org.totschnig.myexpenses.viewmodel.XlsxImportViewModel
@@ -92,6 +95,7 @@ class XlsxImportActivity : ProtectedFragmentActivity() {
                                 onToggleRow = viewModel::toggleRow,
                                 onToggleAll = viewModel::toggleAll,
                                 onSetAccount = viewModel::setAccount,
+                                onSetCategory = viewModel::setRowCategory,
                                 onConfirm = viewModel::confirmImport,
                                 onCancel = { viewModel.reset() }
                             )
@@ -175,6 +179,7 @@ private fun PreviewScreen(
     onToggleRow: (Int) -> Unit,
     onToggleAll: () -> Unit,
     onSetAccount: (RowCurrency, Long) -> Unit,
+    onSetCategory: (Int, Cat, Boolean) -> Unit,
     onConfirm: () -> Unit,
     onCancel: () -> Unit,
 ) {
@@ -183,6 +188,20 @@ private fun PreviewScreen(
     val canConfirm = state.selected.isNotEmpty() &&
         (!hasArs || state.accountForArs != null) &&
         (!hasUsd || state.accountForUsd != null)
+
+    var pickerForRow by remember { mutableStateOf<Int?>(null) }
+    pickerForRow?.let { idx ->
+        val tx = state.transactions[idx]
+        CategoryPickerDialog(
+            description = tx.description,
+            currentCategory = tx.category,
+            onConfirm = { newCat, remember ->
+                onSetCategory(idx, newCat, remember)
+                pickerForRow = null
+            },
+            onDismiss = { pickerForRow = null },
+        )
+    }
 
     Column(Modifier.fillMaxSize()) {
         Column(Modifier.padding(16.dp)) {
@@ -226,7 +245,8 @@ private fun PreviewScreen(
                 TransactionRow(
                     tx = tx,
                     selected = idx in state.selected,
-                    onToggle = { onToggleRow(idx) }
+                    onToggle = { onToggleRow(idx) },
+                    onTapCategory = { pickerForRow = idx },
                 )
                 HorizontalDivider()
             }
@@ -249,11 +269,13 @@ private fun TransactionRow(
     tx: ParsedTransaction,
     selected: Boolean,
     onToggle: () -> Unit,
+    onTapCategory: () -> Unit,
 ) {
     val df = remember { DateTimeFormatter.ofPattern("dd/MM/yy", Locale.ROOT) }
     Row(
         Modifier
             .fillMaxWidth()
+            .clickable(onClick = onTapCategory)
             .padding(vertical = 4.dp, horizontal = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -285,6 +307,74 @@ private fun TransactionRow(
             fontWeight = FontWeight.SemiBold
         )
     }
+}
+
+@Composable
+private fun CategoryPickerDialog(
+    description: String,
+    currentCategory: Cat,
+    onConfirm: (Cat, Boolean) -> Unit,
+    onDismiss: () -> Unit,
+) {
+    var selected by remember { mutableStateOf(currentCategory) }
+    var rememberRule by remember { mutableStateOf(true) }
+    val merchantKey = remember(description) { LearnedRules.extractKey(description) }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Cambiar categoría") },
+        text = {
+            Column {
+                Text(
+                    description,
+                    style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                Spacer(Modifier.height(8.dp))
+                Cat.entries.forEach { cat ->
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .clickable { selected = cat }
+                            .padding(vertical = 2.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        RadioButton(
+                            selected = selected == cat,
+                            onClick = { selected = cat },
+                        )
+                        Spacer(Modifier.width(4.dp))
+                        Text(cat.label)
+                    }
+                }
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .clickable { rememberRule = !rememberRule }
+                        .padding(vertical = 4.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Checkbox(
+                        checked = rememberRule,
+                        onCheckedChange = { rememberRule = it },
+                    )
+                    Spacer(Modifier.width(4.dp))
+                    Text("Recordar para \"$merchantKey\"")
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = { onConfirm(selected, rememberRule) }) {
+                Text("Aplicar")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Cancelar")
+            }
+        },
+    )
 }
 
 @Composable

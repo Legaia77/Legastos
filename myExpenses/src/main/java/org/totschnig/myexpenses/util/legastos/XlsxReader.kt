@@ -3,8 +3,9 @@ package org.totschnig.myexpenses.util.legastos
 import android.util.Xml
 import org.xmlpull.v1.XmlPullParser
 import java.io.ByteArrayInputStream
+import java.io.File
 import java.io.InputStream
-import java.util.zip.ZipInputStream
+import java.util.zip.ZipFile
 
 /**
  * Minimal read-only XLSX (Office Open XML) parser.
@@ -17,40 +18,50 @@ import java.util.zip.ZipInputStream
  * rows, where each row is a list of cell values normalized to strings (or null
  * for empty cells). Numbers are preserved as their string representation.
  *
- * This is intentionally tiny: no styles, no formulas, no dates-as-serials. The
- * BBVA / Mercado Pago files we target don't use those.
+ * Uses [ZipFile] (random-access from the central directory), not
+ * [java.util.zip.ZipInputStream], because some xlsx producers (e.g. Mercado
+ * Pago's account statements) emit ZIP entries with data descriptors and zeroed
+ * sizes in the local headers, which ZipInputStream rejects with
+ * "invalid entry size (expected 0 but got N bytes)".
  */
 object XlsxReader {
 
-    /**
-     * Reads the first worksheet of [input] and returns its rows.
-     *
-     * If [maxRows] is non-null, parsing stops after that many data rows are
-     * collected (useful for previewing).
-     */
-    fun readFirstSheet(input: InputStream, maxRows: Int? = null): List<List<String?>> {
+    /** Reads the first worksheet from a [File]. */
+    fun readFirstSheet(file: File, maxRows: Int? = null): List<List<String?>> {
         var sharedStrings: List<String> = emptyList()
-        val sheetCandidates = mutableMapOf<String, ByteArray>()
-
-        ZipInputStream(input).use { zip ->
-            while (true) {
-                val entry = zip.nextEntry ?: break
-                val name = entry.name
-                when {
-                    name == "xl/sharedStrings.xml" ->
-                        sharedStrings = parseSharedStrings(zip.readBytes())
-                    name.startsWith("xl/worksheets/sheet") && name.endsWith(".xml") ->
-                        sheetCandidates[name] = zip.readBytes()
-                }
-                zip.closeEntry()
+        ZipFile(file).use { zip ->
+            zip.getEntry("xl/sharedStrings.xml")?.let { entry ->
+                sharedStrings = parseSharedStrings(zip.getInputStream(entry).readBytes())
             }
+            // Pick the first sheet by lexicographic order of sheetN.xml.
+            val sheetNames = mutableListOf<String>()
+            val e = zip.entries()
+            while (e.hasMoreElements()) {
+                val name = e.nextElement().name
+                if (name.startsWith("xl/worksheets/sheet") && name.endsWith(".xml")) {
+                    sheetNames.add(name)
+                }
+            }
+            sheetNames.sort()
+            val firstSheet = sheetNames.firstOrNull() ?: return emptyList()
+            val sheetEntry = zip.getEntry(firstSheet) ?: return emptyList()
+            return parseSheet(zip.getInputStream(sheetEntry).readBytes(), sharedStrings, maxRows)
         }
+    }
 
-        val sheetBytes = sheetCandidates.entries
-            .sortedBy { it.key }
-            .firstOrNull()?.value ?: return emptyList()
-
-        return parseSheet(sheetBytes, sharedStrings, maxRows)
+    /**
+     * Convenience overload that copies an [InputStream] to a temp file under
+     * [tempDir] and reads from there. The temp file is always deleted before
+     * returning.
+     */
+    fun readFirstSheet(input: InputStream, tempDir: File, maxRows: Int? = null): List<List<String?>> {
+        val temp = File.createTempFile("legastos_xlsx_", ".xlsx", tempDir)
+        try {
+            input.use { src -> temp.outputStream().use { dst -> src.copyTo(dst) } }
+            return readFirstSheet(temp, maxRows)
+        } finally {
+            temp.delete()
+        }
     }
 
     private fun parseSharedStrings(bytes: ByteArray): List<String> {

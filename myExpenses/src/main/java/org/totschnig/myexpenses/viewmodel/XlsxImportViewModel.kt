@@ -20,6 +20,7 @@ import org.totschnig.myexpenses.provider.KEY_SEALED
 import org.totschnig.myexpenses.provider.TransactionProvider
 import org.totschnig.myexpenses.provider.asSequence
 import org.totschnig.myexpenses.provider.getString
+import org.totschnig.myexpenses.util.legastos.LearnedRules
 import org.totschnig.myexpenses.util.legastos.LegastosCategories.Cat
 import org.totschnig.myexpenses.util.legastos.ParsedTransaction
 import org.totschnig.myexpenses.util.legastos.RowCurrency
@@ -61,14 +62,16 @@ class XlsxImportViewModel(application: Application) : AndroidViewModel(applicati
         viewModelScope.launch {
             try {
                 val (format, txs, accounts) = withContext(Dispatchers.IO) {
+                    val cacheDir = getApplication<Application>().cacheDir
                     val rows = getApplication<Application>().contentResolver
                         .openInputStream(uri)
                         .use { input ->
                             requireNotNull(input) { "No se pudo abrir el archivo" }
-                            XlsxReader.readFirstSheet(input)
+                            XlsxReader.readFirstSheet(input, cacheDir)
                         }
                     val format = XlsxParser.detect(rows)
-                    val txs = XlsxParser.parse(format, rows)
+                    val prefs = LearnedRules.prefs(getApplication())
+                    val txs = XlsxParser.parse(format, rows, prefs)
                     val accounts = loadAccounts()
                     Triple(format, txs, accounts)
                 }
@@ -108,6 +111,22 @@ class XlsxImportViewModel(application: Application) : AndroidViewModel(applicati
             selected = if (s.selected.size == s.transactions.size) emptySet()
                        else s.transactions.indices.toSet()
         )
+    }
+
+    fun setRowCategory(index: Int, cat: Cat, remember: Boolean) {
+        val s = _state.value as? UiState.Preview ?: return
+        val current = s.transactions.getOrNull(index) ?: return
+        val updated = s.transactions.toMutableList().apply {
+            this[index] = current.copy(category = cat)
+        }
+        if (remember) {
+            LearnedRules.remember(
+                LearnedRules.prefs(getApplication()),
+                current.description,
+                cat,
+            )
+        }
+        _state.value = s.copy(transactions = updated)
     }
 
     fun setAccount(currency: RowCurrency, accountId: Long) {

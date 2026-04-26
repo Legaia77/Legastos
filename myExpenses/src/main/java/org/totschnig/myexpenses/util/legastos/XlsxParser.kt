@@ -1,5 +1,6 @@
 package org.totschnig.myexpenses.util.legastos
 
+import android.content.SharedPreferences
 import org.totschnig.myexpenses.util.legastos.LegastosCategories.Cat
 import timber.log.Timber
 import java.time.LocalDate
@@ -48,10 +49,21 @@ object XlsxParser {
         }
     }
 
-    fun parse(format: XlsxFormat, rows: List<List<String?>>): List<ParsedTransaction> = when (format) {
-        XlsxFormat.BBVA_CARD -> parseBbva(rows)
-        XlsxFormat.MERCADO_PAGO -> parseMercadoPago(rows)
+    fun parse(
+        format: XlsxFormat,
+        rows: List<List<String?>>,
+        learnedPrefs: SharedPreferences? = null,
+    ): List<ParsedTransaction> = when (format) {
+        XlsxFormat.BBVA_CARD -> parseBbva(rows, learnedPrefs)
+        XlsxFormat.MERCADO_PAGO -> parseMercadoPago(rows, learnedPrefs)
         XlsxFormat.UNKNOWN -> emptyList()
+    }
+
+    private fun classify(description: String, learnedPrefs: SharedPreferences?): Cat? {
+        if (learnedPrefs != null) {
+            LearnedRules.match(learnedPrefs, description)?.let { return it }
+        }
+        return CategoryRules.classify(description)
     }
 
     // ---------- BBVA ----------
@@ -75,7 +87,7 @@ object XlsxParser {
         return runCatching { LocalDate.of(year, month, day) }.getOrNull()
     }
 
-    private fun parseBbva(rows: List<List<String?>>): List<ParsedTransaction> {
+    private fun parseBbva(rows: List<List<String?>>, learnedPrefs: SharedPreferences?): List<ParsedTransaction> {
         val out = mutableListOf<ParsedTransaction>()
         // Header row 0: Fecha | Descripción | Total Pesos | Total Dólares | Clasificacion | Nueva_Clasificacion | Tipo_Movimiento_Tarjeta
         rows.forEachIndexed { idx, row ->
@@ -108,7 +120,7 @@ object XlsxParser {
                 else -> -kotlin.math.abs(amount)
             }
 
-            val cat = CategoryRules.classify(description)
+            val cat = classify(description, learnedPrefs)
                 ?: CategoryRules.bbvaFallback(bbvaClass)
 
             out.add(
@@ -135,7 +147,7 @@ object XlsxParser {
         return runCatching { LocalDate.parse(raw.trim(), mpDateFormatter) }.getOrNull()
     }
 
-    private fun parseMercadoPago(rows: List<List<String?>>): List<ParsedTransaction> {
+    private fun parseMercadoPago(rows: List<List<String?>>, learnedPrefs: SharedPreferences?): List<ParsedTransaction> {
         val out = mutableListOf<ParsedTransaction>()
         // Find header row (the one that contains "RELEASE_DATE").
         val headerIdx = rows.indexOfFirst { row ->
@@ -152,7 +164,11 @@ object XlsxParser {
             if (amount == 0.0) continue
 
             val isTransfer = CategoryRules.isInternalTransfer(description)
+            // Learned rules win over everything (including built-in transfer detection),
+            // so the user can override our heuristics.
+            val learned = learnedPrefs?.let { LearnedRules.match(it, description) }
             val cat = when {
+                learned != null -> learned
                 isTransfer -> Cat.TRANSFERENCIA
                 description.uppercase().contains("RENDIMIENTOS") -> Cat.INGRESOS
                 amount > 0 && description.uppercase().startsWith("TRANSFERENCIA RECIBIDA") -> Cat.INGRESOS
